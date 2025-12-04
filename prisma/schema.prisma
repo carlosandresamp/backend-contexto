@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  name     String
+  email    String @unique
+  password String
+  role     String @default("user") // user | admin
+  attempts Attempt[]
+}
+
+model WordOfTheDay {
+  id    Int      @id @default(autoincrement())
+  word  String
+  date  DateTime @unique
+}
+
+model Attempt {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  word       String
+  similarity Float
+  rank       Int
+  createdAt  DateTime @default(now())
+}
