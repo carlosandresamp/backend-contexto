@@ -17,7 +17,51 @@ registro, login, palavra do dia, tentativas, similaridade e controle de usuário
 
 # 📁 Estrutura do Projeto
 
-backend-contexto/ │ ├── src/ │   ├── controllers/ │   │   ├── auth.controller.ts │   │   ├── attempt.controller.ts │   │   ├── word.controller.ts │   │ │   ├── routes/ │   │   ├── auth.routes.ts │   │   ├── attempt.routes.ts │   │   ├── word.routes.ts │   │   ├── admin.routes.ts │   │ │   ├── services/ │   │   ├── auth.service.ts │   │   ├── word.service.ts │   │   ├── attempt.service.ts │   │   ├── similarity.ts │   │ │   ├── middlewares/ │   │   ├── authMiddleware.ts │   │   ├── adminMiddleware.ts │   │ │   ├── prisma.ts │   ├── app.ts │   ├── server.ts │ ├── prisma/ │   ├── schema.prisma │   ├── dev.db │ ├── package.json ├── tsconfig.json └── README.md
+backend-contexto/
+│
+├── src/
+│   ├── app.ts
+│   ├── server.ts
+│   ├── prisma.ts
+│   │
+    ├── assets/
+│   ├── routes/
+│   │   ├── auth.routes.ts
+│   │   ├── attempt.routes.ts
+│   │   ├── admin.routes.ts
+│   │   └── word.routes.ts
+│   │
+│   ├── controllers/
+│   │   ├── auth.controller.ts
+│   │   ├── attempt.controller.ts
+│   │   ├── word.controller.ts
+│   │   └── admin.controller.ts
+│   │
+│   ├── services/
+│   │   ├── auth.service.ts
+│   │   ├── attempt.service.ts
+│   │   ├── word.service.ts
+│   │   └── similarity.ts
+│   │
+│   ├── middlewares/
+│   │   ├── authMiddleware.ts
+│   │   └── adminMiddleware.ts
+│   │
+│   └── utils/
+│       ├── app.ts
+│       ├── prisma.ts
+│       ├── server.ts 
+│
+├── prisma/
+│   ├── schema.prisma
+│   └── dev.db
+│
+├── dist/                # gerado após build
+│
+├── package.json
+├── tsconfig.json
+├── .env
+└── README.md
 
 ---
 
