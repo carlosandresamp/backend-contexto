@@ -2,15 +2,23 @@ import prisma from "../prisma";
 
 export class WordService {
   async getToday() {
-    const today = new Date().toISOString().split("T")[0];
+    const now = new Date();
+
+    const start = new Date(now.setHours(0, 0, 0, 0));
+    const end = new Date(now.setHours(23, 59, 59, 999));
 
     const word = await prisma.wordOfTheDay.findFirst({
-      where: { date: new Date(today) }
+      where: {
+        date: {
+          gte: start,
+          lte: end,
+        },
+      },
     });
 
     return {
       length: word?.word.length ?? 0,
-      date: today
+      date: new Date().toISOString().split("T")[0],
     };
   }
 
@@ -18,7 +26,7 @@ export class WordService {
     const today = new Date().toISOString().split("T")[0];
 
     return prisma.wordOfTheDay.create({
-      data: { word, date: new Date(today) }
+      data: { word, date: new Date(today) },
     });
   }
 }

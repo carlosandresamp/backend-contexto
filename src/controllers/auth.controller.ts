@@ -4,8 +4,8 @@ const service = new AuthService();
 
 export class AuthController {
   register = async (req, reply) => {
-    const { name, email, password } = req.body;
-    const user = await service.register(name, email, password);
+    const { name, email, password, role } = req.body;
+    const user = await service.register(name, email, password, role);
     reply.send(user);
   };
 

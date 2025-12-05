@@ -3,11 +3,21 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export class AuthService {
-  async register(name: string, email: string, password: string) {
+  async register(
+    name: string,
+    email: string,
+    password: string,
+    role: string = "user"
+  ) {
     const hashed = await bcrypt.hash(password, 10);
 
     return prisma.user.create({
-      data: { name, email, password: hashed },
+      data: {
+        name,
+        email,
+        password: hashed,
+        role,
+      },
     });
   }
 
